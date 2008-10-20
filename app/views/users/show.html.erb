@@ -3,7 +3,11 @@
 </p>
 <p>
   <%= :user.label_tag :display_name, :value => 'Name' %>
-  <%= mail_to(@user_profile.display_name, @user_profile.email_address) %>
+  <% if configatron.user_auth.link_email_address -%>
+    <%= mail_to(@user_profile.display_name, @user_profile.email_address) %>
+  <% else -%>
+    <%= @user_profile.display_name %>
+  <% end -%>
 </p>
 <p>
   <%= :user.label_tag :created_at, :value => 'Member Since' %>
@@ -15,10 +19,13 @@
 </p>
 <p>
   <%= :user_profile.label_tag :bio, :value => 'Biography' %>
-  <div id='user_auth_bio'><%= link_image_to(user_bio_photo_path(@user.id, :thumb), user_bio_photo_path(@user.id)) %><%= simple_format(@user_profile.bio || "There is no biography yet for this user.") %></div>
+  <div id='user_auth_bio'>
+    <%= render(:partial, :bio_photo) %>
+    <% unless @user_profile.bio.blank? -%>
+      <%= simple_format @user_profile.bio %>
+    <% else -%>
+      <p>There is no biography yet for this user.</p>
+    <% end -%>
+  </div>
 </p>
 
-<% if @user == current_user -%>
-  <%= link_to("Change Password", users_edit_url(:id => @user)) %> |
-<% end -%>
-<%= link_to("Back", users_index_url) %>

@@ -181,4 +181,15 @@ label {
   padding: 0px;
   margin: 0px;
   border-style: none;
+  clear: both;
+  min-height: 200px;
+}
+
+#user_auth_bio_photo {
+  padding: 0px;
+  padding-right: 5px;
+  padding-top: 5px;
+  margin: 0px;
+  border-style: none;
+  float: left;
 }
