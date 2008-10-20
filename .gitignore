@@ -6,3 +6,4 @@ pkg
 *.gem
 *.pid
 coverage
+public/images/bios
