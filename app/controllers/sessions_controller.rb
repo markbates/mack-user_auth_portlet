@@ -1,6 +1,8 @@
 class SessionsController
   include Mack::Controller
   
+  layout :user_auth
+  
   def index
     redirect_to(login_url)
   end

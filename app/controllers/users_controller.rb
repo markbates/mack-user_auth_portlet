@@ -1,6 +1,8 @@
 class UsersController
   include Mack::Controller
   
+  layout :user_auth
+  
   before_filter :authorized?, :only => [:edit]
   
   # GET /users

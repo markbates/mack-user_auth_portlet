@@ -172,3 +172,13 @@ label {
   border: 2px solid red;
   padding: 2px 2px 2px 2px;
 }
+
+#user_auth_bio p{
+  padding-bottom: 5px;
+}
+
+#user_auth_bio {
+  padding: 0px;
+  margin: 0px;
+  border-style: none;
+}

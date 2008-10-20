@@ -1,6 +1,8 @@
 class UserProfilesController
   include Mack::Controller
   
+  layout :user_auth
+  
   # GET /user_profiles/1/edit
   def edit
     @user_profile = UserProfile.get(params[:id])

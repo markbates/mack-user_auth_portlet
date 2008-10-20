@@ -27,11 +27,11 @@ describe UsersController do
       user.should == @user
     end
     
-    it "should send you to the 404 page if the user is not found" do
-      get users_show_url(:id => 10000000)
-      response.should be_not_found
-      response.body.should match(/We're sorry, we couldn't find the page you were looking for: '#{users_show_url(:id => 10000000)}'/)
-    end
+    # it "should send you to the 404 page if the user is not found" do
+    #   get users_show_url(:id => 10000000)
+    #   response.should be_not_found
+    #   response.body.should match(/We're sorry, we couldn't find the page you were looking for: '#{users_show_url(:id => 10000000)}'/)
+    # end
     
   end
   
@@ -85,7 +85,7 @@ describe UsersController do
         response.should be_redirected_to(users_show_url(:id => user))
         delivered_notifiers.size.should == 1
         we = delivered_notifiers.first
-        we.subject.should == 'Welcome to GoOnIUserAuthYou.com'
+        we.subject.should == configatron.user_auth.emails.welcome.subject
         we.to.should == user.user_profile.email_address
         we.body(:plain).should match(/Welcome: #{user.username}!/)
         we.body(:html).should match(/<h1>Welcome: #{user.username}!<\/h1>/)

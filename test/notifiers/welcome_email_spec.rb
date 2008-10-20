@@ -13,8 +13,8 @@ describe WelcomeEmail do
       we = WelcomeEmail.compose(@user)
       we.should be_is_a(WelcomeEmail)
       we.to.should == @user.user_profile.email_address
-      we.from.should == 'notifier@goonidareyou.com'
-      we.subject.should == 'Welcome to GoOnIUserAuthYou.com'
+      we.from.should == configatron.user_auth.emails.welcome.from
+      we.subject.should == configatron.user_auth.emails.welcome.subject
       we.body(:plain).should match("Welcome: #{@user.user_profile.display_name}!")
       we.body(:html).should match("<h1>Welcome: #{@user.user_profile.display_name}!</h1>")
       delivered_notifiers.should be_empty
@@ -31,8 +31,8 @@ describe WelcomeEmail do
       we = delivered_notifiers.first
       we.should be_is_a(WelcomeEmail)
       we.to.should == @user.user_profile.email_address
-      we.from.should == 'notifier@goonidareyou.com'
-      we.subject.should == 'Welcome to GoOnIUserAuthYou.com'
+      we.from.should == configatron.user_auth.emails.welcome.from
+      we.subject.should == configatron.user_auth.emails.welcome.subject
       we.body(:plain).should match("Welcome: #{@user.user_profile.display_name}!")
       we.body(:html).should match("<h1>Welcome: #{@user.user_profile.display_name}!</h1>")
     end

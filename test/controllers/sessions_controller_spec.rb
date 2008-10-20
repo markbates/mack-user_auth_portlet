@@ -2,15 +2,6 @@ require File.join(File.dirname(__FILE__), "..", "spec_helper.rb")
 
 describe SessionsController do
   
-  describe "index" do
-    
-    it "should go to the login form" do
-      get "/sessions/index"
-      response.should be_redirected_to(login_url)
-    end
-    
-  end
-  
   describe "new" do
     
     it "should present a login form" do

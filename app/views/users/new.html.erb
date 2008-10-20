@@ -8,7 +8,7 @@
   <%= :user.password_field :password_confirmation, :label => true %>
   <%= :user_profile.text_field :email_address, :label => true %>
   <%= :user_profile.date_select :birthdate, :label => true, :year_values => birth_years %>
-  <p><%= submit_button("Update") %></p>
+  <p><%= submit_button("Create") %></p>
 <% end %>
 
 <%= link_to("Back", users_index_url) %>

@@ -10,4 +10,4 @@
   <p><%= submit_button("Update") %></p>
 <% end %>
 
-<%= link_to("Back", user_profiles_index_url) %>
+<%= link_to("Back", users_show_url(:id => @user_profile.user)) %>
