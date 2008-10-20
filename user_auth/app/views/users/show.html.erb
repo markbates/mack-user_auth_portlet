@@ -1,0 +1,24 @@
+<p>
+  <h1>User</h1>
+</p>
+<p>
+  <%= :user.label_tag :display_name, :value => 'Name' %>
+  <%= mail_to(@user_profile.display_name, @user_profile.email_address) %>
+</p>
+<p>
+  <%= :user.label_tag :created_at, :value => 'Member Since' %>
+  <%= format_date_time(@user.created_at) %>
+</p>
+<p>
+  <%= :user_profile.label_tag :birthdate %>
+  <%= format_date(@user_profile.birthdate) %>
+</p>
+<p>
+  <%= :user_profile.label_tag :bio, :value => 'Biography' %>
+  <%= @user_profile.bio || "There is no biography yet for this user." %>
+</p>
+
+<% if @user == current_user -%>
+  <%= link_to("Change Password", users_edit_url(:id => @user)) %> |
+<% end -%>
+<%= link_to("Back", users_index_url) %>

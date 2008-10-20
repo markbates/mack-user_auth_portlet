@@ -1,0 +1,39 @@
+development:
+  default:
+    adapter: postgres
+    database: user_auth_development
+    host: localhost
+    username: ruby
+    password: password
+    
+test:
+  default:
+    adapter: postgres
+    database: user_auth_test
+    host: localhost
+    username: ruby
+    password: password
+
+production:
+  default:
+    adapter: postgres
+    database: user_auth_production
+    host: localhost
+    username: ruby
+    password: password
+
+# development:
+#   default:
+#     adapter: sqlite3
+#     database: <%= File.join(Mack.root, "db", "user_auth_development.db") %>
+#  
+# test:
+#   default:
+#     adapter: sqlite3
+#     database: <%= File.join(Mack.root, "db", "user_auth_test.db") %>
+#  
+# production:
+#   default:
+#     adapter: sqlite3
+#     database: <%= File.join(Mack.root, "db", "user_auth_production.db") %>
+

@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title><%= controller.controller_name %>: <%= controller.action_name %></title>
+  <link href="/stylesheets/scaffold.css" media="screen" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<div id="wrapper">
+  
+  <div id='user_menu'>
+    <% if is_logged_in? -%>
+      <p>Welcome: <%= link_to(current_user.user_profile.display_name, users_show_url(:id => current_user)) %> <%= link_to("Logout", logout_url) %></p>
+      <p><%= link_to('Edit Profile', user_profiles_edit_url(:id => current_user.user_profile)) %> | <%= link_to('Change Password', users_edit_url(:id => current_user)) %></p>
+    <% else -%>
+      <p><%= link_to("Login", login_url) %> or <%= link_to("Register", users_new_url) %></p>
+    <% end -%>
+  </div>
+
+  <% if tell[:notice] -%>
+    <div id="tell_notice"><%= tell[:notice] %></div>
+  <% end -%>
+
+  <div><%= yield_to :view  %></div>
+
+</div>
+</body>
+</html>

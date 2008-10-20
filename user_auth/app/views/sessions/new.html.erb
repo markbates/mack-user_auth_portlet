@@ -1,0 +1,11 @@
+<%= error_messages_for :user %>
+
+<h1>Please login:</h1>
+
+<% form(do_login_url) do -%>
+  <%= :user.text_field :username, :label => true %>
+  <%= :user.password_field :password, :label => true %>
+  <p><%= submit_button 'Login' %></p>
+<% end -%>
+
+<h2><%= link_to("Register!", users_new_url) %></h2>

@@ -1,0 +1,14 @@
+<h1>New User</h1>
+
+<%= error_messages_for :user %>
+
+<% form(users_create_url, :class => "new_user", :id => "new_user") do %>
+  <%= :user.text_field :username, :label => true %>
+  <%= :user.password_field :password, :label => true %>
+  <%= :user.password_field :password_confirmation, :label => true %>
+  <%= :user_profile.text_field :email_address, :label => true %>
+  <%= :user_profile.date_select :birthdate, :label => true, :year_values => birth_years %>
+  <p><%= submit_button("Update") %></p>
+<% end %>
+
+<%= link_to("Back", users_index_url) %>
