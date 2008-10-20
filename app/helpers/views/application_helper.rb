@@ -14,13 +14,16 @@ module Mack
         ((Time.now.year - 100)..(Time.now.year - 13)).to_a.reverse
       end
       
-      def user_bio_photo(id, options = {})
-        path = File.join(configatron.user_auth.bio_photo.path, id, 'bio_photo.*')
+      def user_bio_photo_path(id, type = nil)
+        name = 'bio_photo'
+        name << "_#{type}" if type
+        name << '.*'
+        path = File.join(configatron.user_auth.bio_photo.path, id, name)
         imgs = Dir.glob(path).sort
         if imgs.empty?
-          img('not_available.gif', options)
+          '/images/not_available.gif'
         else
-          img(imgs.first.gsub(Mack::Paths.public, ''), options)
+          imgs.first.gsub(Mack::Paths.public, '')
         end
       end
       

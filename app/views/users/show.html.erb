@@ -15,7 +15,7 @@
 </p>
 <p>
   <%= :user_profile.label_tag :bio, :value => 'Biography' %>
-  <div id='user_auth_bio'><%= user_bio_photo(@user.id, :align => :left) %><%= simple_format(@user_profile.bio || "There is no biography yet for this user.") %></div>
+  <div id='user_auth_bio'><%= link_image_to(user_bio_photo_path(@user.id, :thumb), user_bio_photo_path(@user.id)) %><%= simple_format(@user_profile.bio || "There is no biography yet for this user.") %></div>
 </p>
 
 <% if @user == current_user -%>
