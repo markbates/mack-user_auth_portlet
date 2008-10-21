@@ -27,21 +27,29 @@ module Mack
         end
       end
       
-      def users_pagination_links
+      def pagination_links(total_pages, url, options = {}, &block)
+        options = {:next => 'next >>', :prev => '<< prev'}.merge(options)
         cur_page = (params[:page] || 1).to_i
         links = []
-        if cur_page > 1
-          links << link_unless_current('<< prev', users_index_url(:page => cur_page - 1))
+        if cur_page > 1 && options[:prev]
+          links << link_unless_current(options[:prev], send(url, :page => cur_page - 1))
         end
-        @user_page_count.times do |i|
-          page = i + 1
-          options = {}
-          options[:page] = page unless page == 1
-          links << link_unless_current(page, users_index_url(options))
+        if block_given?
+          total_pages.times do |i|
+            page = i + 1
+            yield page, cur_page
+          end          
+        else
+          total_pages.times do |i|
+            page = i + 1
+            opts = {}
+            opts[:page] = page unless page == 1
+            links << link_unless_current(page, send(url, opts))
+          end
         end
-        if cur_page < @user_page_count
-          if cur_page > 1
-            links << link_unless_current('next >>', users_index_url(:page => cur_page + 1))
+        if cur_page < total_pages
+          if cur_page > 1 && options[:next]
+            links << link_unless_current(options[:next], send(url, :page => cur_page + 1))
           end
         end
         links.join(' ')
