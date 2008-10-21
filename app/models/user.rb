@@ -2,8 +2,6 @@ require 'dm-types/bcrypt_hash'
 class User
   include DataMapper::Resource
   
-  is_paginated
-  
   attr_accessor :password_confirmation
 
   property :id, Serial

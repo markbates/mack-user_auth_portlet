@@ -10,7 +10,7 @@ configatron.default_secret_key = '7XYGC447XBG43JCMNG8QTGYFDFZGHK3ALGAG34GY'
 
 configatron.mack.data_mapper.use_repository_runner = true
 
-configatron.user_auth.users_per_page = 10
+configatron.user_auth.users_per_page = 20
 
 begin
   require 'image_science'
