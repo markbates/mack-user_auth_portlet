@@ -1,13 +1,6 @@
+<%= render(:partial, :bio_photo) %>
 <p>
-  <h1>User</h1>
-</p>
-<p>
-  <%= :user.label_tag :display_name, :value => 'Name' %>
-  <% if configatron.user_auth.link_email_address -%>
-    <%= mail_to(@user_profile.display_name, @user_profile.email_address) %>
-  <% else -%>
-    <%= @user_profile.display_name %>
-  <% end -%>
+  <h1><%= @user_profile.display_name %></h1>
 </p>
 <p>
   <%= :user.label_tag :created_at, :value => 'Member Since' %>
@@ -20,7 +13,6 @@
 <p>
   <%= :user_profile.label_tag :bio, :value => 'Biography' %>
   <div id='user_auth_bio'>
-    <%= render(:partial, :bio_photo) %>
     <% unless @user_profile.bio.blank? -%>
       <%= simple_format @user_profile.bio %>
     <% else -%>

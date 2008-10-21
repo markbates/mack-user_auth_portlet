@@ -14,6 +14,7 @@ class SessionsController
   def create
     @user = User.authenticate(params[:user][:username], params[:user][:password])
     if @user
+      cookies[:foo] = 'bar'
       session[:user_id] = @user.id
       redirect_to(users_show_url(:id => @user))
     else
@@ -25,6 +26,7 @@ class SessionsController
   
   def logout
     session.reset!
+    cookies.delete(:foo)
     redirect_to(login_url)
   end
   
