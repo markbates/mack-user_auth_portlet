@@ -8,6 +8,8 @@ configatron.user_auth.bio_photo.thumb_size = 150
 
 configatron.default_secret_key = '7XYGC447XBG43JCMNG8QTGYFDFZGHK3ALGAG34GY'
 
+configatron.mack.data_mapper.use_repository_runner = false
+
 begin
   require 'image_science'
   configatron.user_auth.use_image_science = true
