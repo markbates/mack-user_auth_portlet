@@ -27,6 +27,26 @@ module Mack
         end
       end
       
+      def users_pagination_links
+        cur_page = (params[:page] || 1).to_i
+        links = []
+        if cur_page > 1
+          links << link_unless_current('<< prev', users_index_url(:page => cur_page - 1))
+        end
+        @user_page_count.times do |i|
+          page = i + 1
+          options = {}
+          options[:page] = page unless page == 1
+          links << link_unless_current(page, users_index_url(options))
+        end
+        if cur_page < @user_page_count
+          if cur_page > 1
+            links << link_unless_current('next >>', users_index_url(:page => cur_page + 1))
+          end
+        end
+        links.join(' ')
+      end
+      
     end
   end
 end

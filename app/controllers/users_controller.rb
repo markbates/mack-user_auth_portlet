@@ -7,7 +7,7 @@ class UsersController
   
   # GET /users
   def index
-    @users = User.all
+    @user_page_count, @users = User.paginated(:page => (params[:page] || 1), :per_page => configatron.user_auth.users_per_page)
   end
 
   # GET /users/1
