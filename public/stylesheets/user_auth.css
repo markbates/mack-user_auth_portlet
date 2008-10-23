@@ -193,3 +193,7 @@ label {
   float: right;
   clear: left;
 }
+
+#listing_users_total {
+  text-align: center;
+}

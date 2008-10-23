@@ -28,28 +28,30 @@ module Mack
       end
       
       def pagination_links(pagination, url, options = {}, &block)
-        options = {:next => 'next >>', :prev => '<< prev'}.merge(options)
-        links = []
-        if pagination.has_prev? && options[:prev]
-          links << link_unless_current(options[:prev], send(url, :page => pagination.current_page - 1))
-        end
-        if block_given?
-          pagination.total_pages.times do |i|
-            page = i + 1
-            yield page, pagination.current_page
-          end          
-        else
-          pagination.total_pages.times do |i|
-            page = i + 1
-            opts = {}
-            opts[:page] = page unless page == 1
-            links << link_unless_current(page, send(url, opts))
+        if pagination.total_pages > 1
+          options = {:next => 'next >>', :prev => '<< prev'}.merge(options)
+          links = []
+          if pagination.has_previous? && options[:prev]
+            links << link_unless_current(options[:prev], send(url, :page => pagination.current_page - 1))
           end
+          if block_given?
+            pagination.total_pages.times do |i|
+              page = i + 1
+              yield page, pagination.current_page
+            end          
+          else
+            pagination.total_pages.times do |i|
+              page = i + 1
+              opts = {}
+              opts[:page] = page unless page == 1
+              links << link_unless_current(page, send(url, opts))
+            end
+          end
+          if pagination.has_next? && options[:next]
+            links << link_unless_current(options[:next], send(url, :page => pagination.current_page + 1))
+          end
+          links.join(' ')
         end
-        if pagination.has_next? && options[:next]
-          links << link_unless_current(options[:next], send(url, :page => pagination.current_page + 1))
-        end
-        links.join(' ')
       end
       
     end

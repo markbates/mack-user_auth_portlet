@@ -1,5 +1,9 @@
 <h1>Listing Users</h1>
 
+<% if @user_pagination.total_pages > 0 -%>
+  <div id='listing_users_total'>Displaying users <%= @user_pagination.start_index %> - <%= @user_pagination.end_index %> out of <%= @user_pagination.total_results %></div>
+<% end -%>
+
 <table>
   <tr>
     <th>Username</th>
@@ -13,7 +17,7 @@
   <tr>
     <td><%= link_to(user.username, users_show_url(:id => user)) %></td>
     <td><%= user.user_profile.display_name %></td>
-    <td><%= user.user_profile.email_address %></td>
+    <td><%= mail_to(user.user_profile.email_address) %></td>
     <td><%= format_date(user.user_profile.birthdate) %></td>
     <td><%= format_date_time(user.created_at) %></td>
   </tr>
