@@ -56,6 +56,7 @@ CREATE TABLE users (
 --
 
 CREATE SEQUENCE user_profiles_id_seq
+    START WITH 1
     INCREMENT BY 1
     NO MAXVALUE
     NO MINVALUE
@@ -74,6 +75,7 @@ ALTER SEQUENCE user_profiles_id_seq OWNED BY user_profiles.id;
 --
 
 CREATE SEQUENCE users_id_seq
+    START WITH 1
     INCREMENT BY 1
     NO MAXVALUE
     NO MINVALUE

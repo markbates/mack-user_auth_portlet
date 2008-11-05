@@ -7,3 +7,4 @@ pkg
 *.pid
 coverage
 public/images/bios
+db/development_schema_structure.sql
