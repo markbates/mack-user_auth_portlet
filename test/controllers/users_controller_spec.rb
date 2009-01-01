@@ -102,7 +102,7 @@ describe UsersController do
       response.should be_redirected_to(users_show_url(:id => @user))
       user = assigns(:user)
       user.should == @user
-      user.password.should == "#{@user.username}123456".downcase
+      user.password.should == '123456'.downcase.hexdigest
     end
     
   end

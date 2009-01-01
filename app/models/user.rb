@@ -1,4 +1,4 @@
-require 'dm-types/bcrypt_hash'
+# require 'dm-types/bcrypt_hash'
 class User
   include DataMapper::Resource
   
@@ -6,7 +6,7 @@ class User
 
   property :id, Serial
   property :username, String
-  property :password, BCryptHash
+  property :password, String
   property :created_at, DateTime
   property :updated_at, DateTime
   
@@ -22,7 +22,10 @@ class User
   def self.authenticate(username, password)
     user = User.first(:username => username)
     return nil if user.nil?
-    user.password == "#{username}#{password}".downcase ? user : nil
+    puts "user.password: #{user.password}"
+    puts password.downcase.hexdigest
+    puts "user.username: #{user.username}"
+    user.password == password.downcase.hexdigest ? user : nil
   end
   
   private
@@ -35,7 +38,7 @@ class User
   
   def normalize_password
     if attribute_dirty?(:password)
-      self.password = "#{self.username}#{self.password}".downcase
+      self.password = self.password.downcase.hexdigest
     end
   end 
 end

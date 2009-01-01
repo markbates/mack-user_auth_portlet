@@ -32,6 +32,7 @@ describe User do
   describe "authenticate" do
     
     it "should take a username and password and true if it matches what's in the database" do
+      puts "@user.username: #{@user.username}"
       User.authenticate(@user.username, "password").should_not be_nil
     end
     
@@ -52,7 +53,7 @@ describe User do
     describe "validations" do
   
       it "should be required on creation" do
-        user = User.new(:password => "123456")
+        user = User.new(:password => "123456", :username => 'markykang')
         user.should_not be_valid
         user.errors.full_messages.should include("Password does not match the confirmation")
       end
