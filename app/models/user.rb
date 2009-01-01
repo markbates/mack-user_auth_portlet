@@ -22,9 +22,6 @@ class User
   def self.authenticate(username, password)
     user = User.first(:username => username)
     return nil if user.nil?
-    puts "user.password: #{user.password}"
-    puts password.downcase.hexdigest
-    puts "user.username: #{user.username}"
     user.password == password.downcase.hexdigest ? user : nil
   end
   

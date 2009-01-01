@@ -32,7 +32,6 @@ describe User do
   describe "authenticate" do
     
     it "should take a username and password and true if it matches what's in the database" do
-      puts "@user.username: #{@user.username}"
       User.authenticate(@user.username, "password").should_not be_nil
     end
     
